@@ -1,18 +1,27 @@
 import "package:flutter/material.dart";
 
-class DetailsPage extends StatefulWidget {
-  DetailsPage({Key? key}) : super(key: key);
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({Key? key}) : super(key: key);
 
-  @override
-  State<DetailsPage> createState() => _DetailsPageState();
-}
-
-class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(
-      child: column,
-    ));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Details Page"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Details Page",
+              style: TextStyle(
+                fontSize: 25.0,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
-}//hello file to be change here
+}
