@@ -23,11 +23,12 @@ class _BottomMenuState extends State<BottomMenu> {
     const AboutPage(),
     const ServicesPage()
   ];
+
   int _selectItem = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Bottom Nav App")),
+        appBar: AppBar(title: Text("Trial App")),
         body: Center(
           child: _pagesData[_selectItem],
         ),
@@ -47,3 +48,4 @@ class _BottomMenuState extends State<BottomMenu> {
         ));
   }
 }
+//found this code soomething change here
