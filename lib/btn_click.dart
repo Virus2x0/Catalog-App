@@ -26,17 +26,16 @@ class _BottomMenuState extends State<BottomMenu> {
             // Center(
             //   child: _pagesData[_selectItem],
             // ),
-            Center(
-              child: ElevatedButton(
-                  child: Text(
-                    "Click here2",
-                    style: TextStyle(fontSize: 25.0),
-                  ),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => DetailsPage()));
-                  }),
-            )
+
+            ElevatedButton(
+                child: Text(
+                  "Click here2",
+                  style: TextStyle(fontSize: 25.0),
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DetailsPage()));
+                }),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
