@@ -13,7 +13,7 @@ void main() {
     //home: BottomMenu(),
     home: LoginPage(),
     theme: ThemeData(
-      primarySwatch: Colors.deepPurple,
+      primarySwatch: Colors.blue,
       fontFamily: GoogleFonts.lato().fontFamily,
       primaryTextTheme: GoogleFonts.latoTextTheme(),
     ),

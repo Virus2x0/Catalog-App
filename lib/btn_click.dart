@@ -17,25 +17,41 @@ class _BottomMenuState extends State<BottomMenu> {
   ];
 
   int _selectItem = 0;
+
+  var dropdownCallBack;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Trial App")),
         body: Column(
           children: <Widget>[
-            // Center(
-            //   child: _pagesData[_selectItem],
-            // ),
-
-            ElevatedButton(
-                child: Text(
-                  "Click here2",
-                  style: TextStyle(fontSize: 25.0),
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DetailsPage()));
-                }),
+            Expanded(
+              child: Center(
+                child: _pagesData[_selectItem],
+              ),
+            ),
+            Expanded(
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(30, 50),
+                    textStyle: TextStyle(fontSize: 28),
+                  ),
+                  child: Text(
+                    "Click here2",
+                  ),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DetailsPage()));
+                  }),
+            ),
+            Expanded(
+                child: DropdownButton(
+              items: const [
+                DropdownMenuItem(child: Text("first"), value: "first"),
+                DropdownMenuItem(child: Text("second"), value: "seconf")
+              ],
+              onChanged: dropdownCallBack,
+            ))
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
