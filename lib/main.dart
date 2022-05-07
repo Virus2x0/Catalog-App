@@ -8,7 +8,7 @@ import 'package:flutter_for_trial/login_page.dart';
 
 void main() {
   runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
+    //debugShowCheckedModeBanner: false,
     title: "Trial App",
     //home: BottomMenu(),
     home: LoginPage(),

@@ -24,16 +24,18 @@ class _BottomMenuState extends State<BottomMenu> {
     return Scaffold(
         appBar: AppBar(title: Text("Trial App")),
         body: Column(
-          children: <Widget>[
-            Expanded(
+          children: [
+            SizedBox(
+              height: 150.0,
               child: Center(
                 child: _pagesData[_selectItem],
               ),
             ),
-            Expanded(
+            SizedBox(
+              height: 120.0,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(30, 50),
+                    minimumSize: Size(30.0, 15.0),
                     textStyle: TextStyle(fontSize: 28),
                   ),
                   child: Text(
@@ -44,14 +46,15 @@ class _BottomMenuState extends State<BottomMenu> {
                         MaterialPageRoute(builder: (context) => DetailsPage()));
                   }),
             ),
-            Expanded(
-                child: DropdownButton(
-              items: const [
-                DropdownMenuItem(child: Text("first"), value: "first"),
-                DropdownMenuItem(child: Text("second"), value: "seconf")
-              ],
-              onChanged: dropdownCallBack,
-            ))
+            // Expanded(
+            //     child: DropdownButton(
+            //   items: const [
+            //     DropdownMenuItem(child: Text("first"), value: "first"),
+            //     DropdownMenuItem(child: Text("second"), value: "seconf")
+            //   ],
+            //   onChanged: dropdownCallBack,
+            // )
+            // )
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
