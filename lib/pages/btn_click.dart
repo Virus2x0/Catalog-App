@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:flutter_for_trial/details.dart';
-import 'package:flutter_for_trial/samplepages.dart';
+import 'package:flutter_for_trial/pages/details.dart';
+import 'package:flutter_for_trial/utils/samplepages.dart';
 
 class BottomMenu extends StatefulWidget {
   BottomMenu({Key? key}) : super(key: key);
@@ -46,15 +46,15 @@ class _BottomMenuState extends State<BottomMenu> {
                         MaterialPageRoute(builder: (context) => DetailsPage()));
                   }),
             ),
-            // Expanded(
-            //     child: DropdownButton(
-            //   items: const [
-            //     DropdownMenuItem(child: Text("first"), value: "first"),
-            //     DropdownMenuItem(child: Text("second"), value: "seconf")
-            //   ],
-            //   onChanged: dropdownCallBack,
-            // )
-            // )
+            SizedBox(
+                height: 120.0,
+                child: DropdownButton(
+                  items: const [
+                    DropdownMenuItem(child: Text("first"), value: "first"),
+                    DropdownMenuItem(child: Text("second"), value: "seconf")
+                  ],
+                  onChanged: dropdownCallBack,
+                ))
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

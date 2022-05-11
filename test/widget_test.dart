@@ -6,10 +6,10 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_for_trial/btn_click.dart';
+import 'package:flutter_for_trial/pages/btn_click.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_for_trial/main.dart';
+import 'package:flutter_for_trial/widgets/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
