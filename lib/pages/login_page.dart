@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:flutter_for_trial/pages/btn_click.dart';
+
+import 'package:flutter_for_trial/pages/home_page.dart';
 
 import '../widgets/drawer.dart';
 
@@ -24,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
 
       await Future.delayed(Duration(seconds: 1));
       await Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DrawerMenu()));
+          context, MaterialPageRoute(builder: (context) => HomePage()));
       setState(() {
         buttonChange = false;
       });
@@ -41,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               Image.asset("assets/images/LogIn_hey.png", fit: BoxFit.cover),
-
               // used sizebox for spacing between two widgets
               SizedBox(
                 height: 20.0,
@@ -49,7 +49,6 @@ class _LoginPageState extends State<LoginPage> {
 
               Text(
                 "Welcome, $name ",
-                // ignore: prefer_const_constructors
                 style: TextStyle(
                   fontSize: 30.0,
                 ),
