@@ -1,9 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
-
 import '../models/catalog.dart';
 import '../widgets/drawer.dart';
 import '../widgets/item_widget.dart';
@@ -21,10 +19,14 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     loadData();
   }
-  //read it again!
+
+  //initState is used to see the data before intialization...
+  //wherer we used loadData..
 
   loadData() async {
+    //used async bcoz of await here... to perform await we need to sync the function as well
     await Future.delayed(Duration(seconds: 2));
+    //await is used beacause that thing will take time to performe...and perforn later
     final catalogJson =
         await rootBundle.loadString('assets/files/catalog.json');
     //untill the json file gets load it will wait
@@ -54,12 +56,24 @@ class _HomePageState extends State<HomePage> {
         //Padding for card list!
         body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: (CatalogModel.items != null)
-                ? ListView.builder(
+            child: (CatalogModel.items != null &&
+                    CatalogModel.items!.isNotEmpty)
+                ? GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
                     itemCount: CatalogModel.items?.length,
-                    itemBuilder: (context, index) => ItemWidget(
-                          item: CatalogModel.items![index],
-                        ))
+                    itemBuilder: (context, index) {
+                      final item = CatalogModel.items![index];
+                      return Card(
+                          clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                          child: GridTile(child: Image.network(item.image)));
+                    }
+                    //  => ItemWidget(
+                    //       item: CatalogModel.items![index],
+                    //     )
+                    )
                 : Center(
                     child: CircularProgressIndicator(),
                   )),

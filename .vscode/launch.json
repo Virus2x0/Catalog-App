@@ -9,7 +9,7 @@
             "name": "flutter_for_trial",
             "request": "launch",
             "type": "dart",
-            "program": "C:/Users/lenovo/Desktop/flutter_for_trial/lib/widgets/main.dart"
+            
         },
         {
             "name": "flutter_for_trial (profile mode)",

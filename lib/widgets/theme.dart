@@ -15,4 +15,7 @@ class MyTheme {
           foregroundColor: Colors.black,
         ),
       );
+
+  static Color creamColor = Color(0xfff5f5f5);
+  static Color NaviBlueColor = Color(0xff403b58);
 }
