@@ -1,8 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+//!  ******************************************************************************
+//* new class CatalogModel which uses List of Item class...
 class CatalogModel {
   static List<Item>? items;
+
+  static Item getById(int id) =>
+      items!.firstWhere((element) => element.id == id, orElse: null);
+
+  static Item getByPosition(int pos) => items![pos];
 }
 
 class Item {
@@ -13,6 +20,7 @@ class Item {
   final String color;
   final String image;
 
+//* constructor for Item class..
   Item(
       {required this.id,
       required this.name,
@@ -20,6 +28,9 @@ class Item {
       required this.price,
       required this.color,
       required this.image});
+
+//! Only this was done manually, rest things are made from Dart Data class extantions
+//! ******************************************************************************
 
   Item copyWith({
     int? id,

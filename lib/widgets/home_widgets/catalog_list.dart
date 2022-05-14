@@ -15,11 +15,11 @@ class CatalogList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
+      shrinkWrap: true, //! ??
       itemCount: CatalogModel
-          .items?.length, //  used CatalogModel items here from catalog.dart
+          .items?.length, //  No. of items in the list from Catalog.dart
       itemBuilder: (context, index) {
-        final catalog = CatalogModel.items![index];
+        final catalog = CatalogModel.getByPosition(index);
         return InkWell(
             onTap: () => Navigator.push(
                 context,
@@ -43,6 +43,7 @@ class CatalogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VxBox(
+        // a card of a product on home page!
         child: Row(
       children: [
         Hero(
@@ -53,7 +54,7 @@ class CatalogItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            catalog.name.text.lg.bold.color(MyTheme.NaviBlueColor).make(),
+            catalog.name.text.lg.bold.color(context.accentColor).make(),
             catalog.desc.text.make(),
             ButtonBar(
               alignment: MainAxisAlignment.spaceBetween,
@@ -72,6 +73,6 @@ class CatalogItem extends StatelessWidget {
           ],
         ))
       ],
-    )).white.rounded.square(150).make().py16();
+    )).color(context.cardColor).rounded.square(150).make().py(16); // a box in
   }
 }

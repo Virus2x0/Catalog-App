@@ -54,15 +54,18 @@ class _HomePage2State extends State<HomePage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.canvasColor,
+
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => CartPage())),
         child: Icon(CupertinoIcons.cart),
+        backgroundColor: context.theme.buttonColor,
       ),
-      backgroundColor: MyTheme.creamColor,
+
       body: SafeArea(
         child: Container(
-          padding: Vx.m32,
+          padding: Vx.m32, //32 padding from all sides
           child: Column(
             children: [
               CatalogHeader(), // Home page header with catalog app and sub line
@@ -76,7 +79,7 @@ class _HomePage2State extends State<HomePage2> {
           ),
         ),
       ),
-      drawer: DrawerMenu(),
+      drawer: DrawerMenu(), // drawer menu from left side swipe
     );
   }
 }

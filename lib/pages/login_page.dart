@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-
+import 'package:flutter_for_trial/pages/home_page_2.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_for_trial/pages/home_page.dart';
 
 import '../widgets/drawer.dart';
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
 
       await Future.delayed(Duration(seconds: 1));
       await Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+          context, MaterialPageRoute(builder: (context) => HomePage2()));
       setState(() {
         buttonChange = false;
       });
@@ -35,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: context.canvasColor,
       child: SingleChildScrollView(
         child: Form(
           key: _formkey,
