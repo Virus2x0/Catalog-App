@@ -15,12 +15,15 @@ class _DrawerMenuState extends State<DrawerMenu> {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkS8v2vSpIzK2HCPWDdfZP3vbvQhEm5fxuwkNENSNSswbBoWScLb0h3GjVFqgZB9FEpSg&usqp=CAU";
     return Drawer(
       child: Container(
-        color: Colors.blue,
+        // color: Colors.blue,
         child: ListView(
           children: [
             DrawerHeader(
                 padding: EdgeInsets.zero,
                 child: UserAccountsDrawerHeader(
+                  // decoration: BoxDecoration(
+                  //   color: Colors.indigo,
+                  // ),
                   accountName: Text("Vivek Kadam"),
                   accountEmail: Text("Vivekadam1332@gmail.com"),
                   currentAccountPicture:

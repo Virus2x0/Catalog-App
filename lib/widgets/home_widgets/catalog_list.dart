@@ -4,8 +4,10 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter/material.dart';
 
+import '../../models/cart.dart';
 import '../../models/catalog.dart';
 import '../theme.dart';
+import 'add_to_cart.dart';
 import 'catalog_image.dart';
 
 //! Catalog listView.builder here
@@ -19,12 +21,14 @@ class CatalogList extends StatelessWidget {
       itemCount: CatalogModel
           .items?.length, //  No. of items in the list from Catalog.dart
       itemBuilder: (context, index) {
-        final catalog = CatalogModel.getByPosition(index);
+        final catalog = CatalogModel.items![index];
         return InkWell(
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => HomeDetailsPage(catalog: catalog))),
+                    builder: (context) => HomeDetailsPage(
+                          catalog: catalog,
+                        ))),
             child: CatalogItem(catalog: catalog));
         // Returns how a one card or thing gonna appear // kind of listTile get returns
       },
@@ -61,13 +65,7 @@ class CatalogItem extends StatelessWidget {
               buttonPadding: Vx.mH8,
               children: [
                 "\$${catalog.price}".text.bold.make(),
-                ElevatedButton(
-                    style: ButtonStyle(
-                        shape: MaterialStateProperty.all(
-                      StadiumBorder(),
-                    )),
-                    onPressed: () {},
-                    child: "Add to cart".text.make())
+                AddToCart(catalog: catalog)
               ],
             )
           ],

@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../models/catalog.dart';
-import '../widgets/theme.dart';
+
+import '../widgets/home_widgets/add_to_cart.dart';
 
 class HomeDetailsPage extends StatefulWidget {
   final Item catalog;
@@ -14,6 +14,7 @@ class HomeDetailsPage extends StatefulWidget {
 
 class _HomeDetailsPageState extends State<HomeDetailsPage> {
   bool addToCartButtonChange = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +29,9 @@ class _HomeDetailsPageState extends State<HomeDetailsPage> {
           buttonPadding: Vx.mH8, //! ??
           children: [
             "\$${widget.catalog.price}".text.xl4.red700.make(),
-            ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: "Add to cart".text.make())
-                .wh(120, 50) // width and height
+            // AddToCart(
+            //   catalog: catalog,
+            // ).wh(120, 50) // width and height
           ],
         ).p24(),
       ),
@@ -79,4 +77,6 @@ class _HomeDetailsPageState extends State<HomeDetailsPage> {
       ),
     );
   }
+
+  addToCart({catalog}) {}
 }

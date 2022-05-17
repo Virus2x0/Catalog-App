@@ -1,13 +1,63 @@
 import 'package:flutter_for_trial/models/catalog.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+import '../core/store.dart';
 
 class CartModel {
-  CatalogModel _cartlog;
+  //singleton model
 
-  final List<int> _itemIds = [];
+  //catalog filed
+  late CatalogModel _catalog; // created a model
 
-  CartModel get catalog => catalog;
+  //collection of Ids -- Stores id of each item.
+  final List<int> _itemIds = []; //list of ids //array
 
-  set cataloh(CatalogModel newCatalog) {
+//custom setter
+//? catalog will take a input
+  set catalog(CatalogModel newCatalog) {
     _catalog = newCatalog;
+  }
+
+  // get catalog!
+  // custom gertter
+  // ? catalog will give out put of setter
+
+  CatalogModel get catalog => _catalog;
+
+  // get items in cart
+  List<Item> get items => _itemIds.map((id) => _catalog.getById(id)).toList();
+
+  //change in price!
+  num get totalPrice =>
+      items.fold(0, (total, current) => total + current.price);
+
+  //add item
+  void add(Item item) {
+    _itemIds.add(item.id);
+  }
+
+  //removie item
+  void remove(Item item) {
+    _itemIds.remove(item.id);
+  }
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  final Item item;
+
+  AddMutation(this.item);
+  @override
+  perform() {
+    store?.cart._itemIds.add(item.id);
+  }
+}
+
+class RemoveMutation extends VxMutation<MyStore> {
+  final Item item;
+
+  RemoveMutation(this.item);
+  @override
+  perform() {
+    store?.cart._itemIds.remove(item.id);
   }
 }

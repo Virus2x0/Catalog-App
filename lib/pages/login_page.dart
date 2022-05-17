@@ -1,9 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter_for_trial/pages/home_page_2.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter_for_trial/pages/home_page.dart';
-
-import '../widgets/drawer.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

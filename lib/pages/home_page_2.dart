@@ -2,13 +2,16 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:flutter_for_trial/models/cart.dart';
 import 'package:flutter_for_trial/widgets/theme.dart';
+import '../core/store.dart';
 import '../models/catalog.dart';
 import "package:velocity_x/velocity_x.dart";
 import '../widgets/drawer.dart';
 import '../widgets/home_widgets/catalog_header.dart';
 import '../widgets/home_widgets/catalog_list.dart';
 import 'cart_page.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage2 extends StatefulWidget {
   const HomePage2({Key? key}) : super(key: key);
@@ -18,6 +21,7 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePage2State extends State<HomePage2> {
+  final url = "https://mocki.io/v1/a7088020-f73c-4bdc-851c-dc3db8a93fe6";
   @override
   void initState() {
     super.initState();
@@ -29,10 +33,12 @@ class _HomePage2State extends State<HomePage2> {
 
   loadData() async {
     //used async bcoz of await here... to perform await we need to sync the function as well
-    await Future.delayed(Duration(seconds: 2));
+    //!  await Future.delayed(Duration(seconds: 2));
+    final response = await http.get(Uri.parse(url));
+
     //await is used beacause that thing will take time to performe...and perforn later
-    final catalogJson =
-        await rootBundle.loadString('assets/files/catalog.json');
+    //! final catalogJson = await rootBundle.loadString('assets/files/catalog.json');
+    final catalogJson = response.body;
     //untill the json file gets load it will wait
 
     final decodeData = jsonDecode(catalogJson);
@@ -53,15 +59,18 @@ class _HomePage2State extends State<HomePage2> {
 
   @override
   Widget build(BuildContext context) {
+    final _cart = (VxState.store as MyStore).cart;
     return Scaffold(
       backgroundColor: context.canvasColor,
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => CartPage())),
-        child: Icon(CupertinoIcons.cart),
-        backgroundColor: context.theme.buttonColor,
-      ),
+      floatingActionButton: VxBuilder(
+          builder: (ctx, store, status) => FloatingActionButton(
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CartPage())),
+                child: Icon(CupertinoIcons.cart),
+                backgroundColor: context.theme.buttonColor,
+              ).badge(color: Vx.red600, size: 20, count: _cart.items.length),
+          mutations: {AddMutation, RemoveMutation}),
 
       body: SafeArea(
         child: Container(
