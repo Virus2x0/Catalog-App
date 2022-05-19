@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:flutter/services.dart';
 import 'package:flutter_for_trial/models/cart.dart';
-import 'package:flutter_for_trial/widgets/theme.dart';
 import '../core/store.dart';
 import '../models/catalog.dart';
 import "package:velocity_x/velocity_x.dart";
@@ -34,6 +32,7 @@ class _HomePage2State extends State<HomePage2> {
   loadData() async {
     //used async bcoz of await here... to perform await we need to sync the function as well
     //!  await Future.delayed(Duration(seconds: 2));
+    //add dependancy of http in pubspec.yaml file...
     final response = await http.get(Uri.parse(url));
 
     //await is used beacause that thing will take time to performe...and perforn later
@@ -62,16 +61,6 @@ class _HomePage2State extends State<HomePage2> {
     final _cart = (VxState.store as MyStore).cart;
     return Scaffold(
       backgroundColor: context.canvasColor,
-
-      floatingActionButton: VxBuilder(
-          builder: (ctx, store, status) => FloatingActionButton(
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CartPage())),
-                child: Icon(CupertinoIcons.cart),
-                backgroundColor: context.theme.buttonColor,
-              ).badge(color: Vx.red600, size: 20, count: _cart.items.length),
-          mutations: {AddMutation, RemoveMutation}),
-
       body: SafeArea(
         child: Container(
           padding: Vx.m32, //32 padding from all sides
@@ -88,6 +77,19 @@ class _HomePage2State extends State<HomePage2> {
           ),
         ),
       ),
+      // Body ends!
+      floatingActionButton: VxBuilder(
+          builder: (ctx, store, status) => FloatingActionButton(
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CartPage())),
+                child: Icon(CupertinoIcons.cart),
+                backgroundColor: context.theme.buttonColor,
+              ).badge(
+                  color: Vx.red600,
+                  size: 20,
+                  count: _cart.items.length,
+                  textStyle: TextStyle(color: Vx.black)),
+          mutations: {AddMutation, RemoveMutation}),
       drawer: DrawerMenu(), // drawer menu from left side swipe
     );
   }

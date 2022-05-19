@@ -13,19 +13,19 @@ class CartModel {
   final List<int> _itemIds = []; //list of ids //array
 
 //custom setter
-//? catalog will take a input
+// //? catalog will take a input
   set catalog(CatalogModel newCatalog) {
     _catalog = newCatalog;
   }
 
-  // get catalog!
-  // custom gertter
-  // ? catalog will give out put of setter
+//   // get catalog!
+//   // custom gertter
+//   // ? catalog will give out put of setter
 
   CatalogModel get catalog => _catalog;
 
   // get items in cart
-  List<Item> get items => _itemIds.map((id) => _catalog.getById(id)).toList();
+  List<Item> get items => _itemIds.map((id) => catalog.getById(id)).toList();
 
   //change in price!
   num get totalPrice =>

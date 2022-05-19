@@ -30,27 +30,37 @@ class _cartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    //important thing for useing VxBuilder
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
         height: 200,
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           //price
           VxBuilder(
-            mutations: {AddMutation, RemoveMutation},
-            builder: (ctx, store, status) {
-              print(_cart.totalPrice);
-              return "\$${_cart.totalPrice.toString()}"
+            mutations: {RemoveMutation},
+            builder: (comtext, store, status) {
+              // print(_cart.totalPrice);
+              return "\$${_cart.totalPrice}"
                   .text
                   .xl5
-                  .color(context.theme.accentColor)
+                  .color(context.theme.colorScheme.secondary)
                   .make();
             },
           ),
           30.widthBox,
           ElevatedButton(
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: "Buying is not supported yet.".text.make()));
+                    if (_cart.totalPrice != 0) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: "Thanks for shopping!".text.make()));
+                      //  RemoveMutation(_cart.items[]s);
+
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: "opss! You forgot to add something!"
+                              .text
+                              .make()));
+                    }
                   },
                   child: "Buy".text.white.make())
               .w32(context)

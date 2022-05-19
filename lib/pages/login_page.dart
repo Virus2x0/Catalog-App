@@ -33,8 +33,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: context.canvasColor,
+      color: context.theme.canvasColor,
       child: SingleChildScrollView(
+        //singlechildScollView gives scrollablity to the small devices~
         child: Form(
           key: _formkey,
           child: Column(
@@ -44,21 +45,15 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 20.0,
               ),
-
-              Text(
-                "Welcome, $name ",
-                style: TextStyle(
-                  fontSize: 30.0,
-                ),
-              ),
-
+              //Welcome Text
+              "Welcome $name".text.size(30).make(),
               SizedBox(
                 height: 20.0,
               ),
               // TextFormField from here...
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: .0, horizontal: 32.0),
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
                 child: Column(
                   children: [
                     TextFormField(

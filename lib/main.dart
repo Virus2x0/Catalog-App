@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Trial App",
-      // home: LoginPage(),
-      home: HomePage2(),
+      home: LoginPage(),
+      // home: HomePage2(),
       themeMode: ThemeMode.system,
       theme: MyTheme.LightTheme(context),
       darkTheme: MyTheme.DarkTheme(context),

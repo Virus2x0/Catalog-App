@@ -4,7 +4,7 @@ import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import '../models/catalog.dart';
 import '../widgets/drawer.dart';
-import '../widgets/item_widget.dart';
+// import '../widgets/item_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

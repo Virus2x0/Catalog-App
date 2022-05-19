@@ -1,12 +1,7 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_for_trial/pages/home_details_page.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import 'package:flutter/material.dart';
-
-import '../../models/cart.dart';
 import '../../models/catalog.dart';
-import '../theme.dart';
 import 'add_to_cart.dart';
 import 'catalog_image.dart';
 
@@ -17,17 +12,21 @@ class CatalogList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true, //! ??
+      shrinkWrap:
+          true, //! If you do not set the shrinkWrap property, your ListView will be as big as its parent.
+
       itemCount: CatalogModel
           .items?.length, //  No. of items in the list from Catalog.dart
       itemBuilder: (context, index) {
         final catalog = CatalogModel.items![index];
         return InkWell(
+            // whole card will be clickable
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => HomeDetailsPage(
                           catalog: catalog,
+                          // goes on as per the index num of product
                         ))),
             child: CatalogItem(catalog: catalog));
         // Returns how a one card or thing gonna appear // kind of listTile get returns
