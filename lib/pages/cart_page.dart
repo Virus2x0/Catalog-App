@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -32,6 +33,7 @@ class _cartTotal extends StatelessWidget {
   Widget build(BuildContext context) {
     //important thing for useing VxBuilder
     final CartModel _cart = (VxState.store as MyStore).cart;
+
     return SizedBox(
         height: 200,
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
@@ -54,7 +56,7 @@ class _cartTotal extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: "Thanks for shopping!".text.make()));
                       //  RemoveMutation(_cart.items[]s);
-
+                      orderDoneAlertDialog();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: "opss! You forgot to add something!"
@@ -66,6 +68,8 @@ class _cartTotal extends StatelessWidget {
               .w32(context)
         ]));
   }
+
+  void orderDoneAlertDialog() {}
 }
 
 class _CartList extends StatelessWidget {

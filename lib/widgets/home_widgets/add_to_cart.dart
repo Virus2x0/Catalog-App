@@ -14,9 +14,12 @@ class AddToCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //* watch used for state management it gets context and
+
     VxState.watch(context, on: [AddMutation, RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
-    final CatalogModel _catalog = (VxState.store as MyStore).catalog;
+
+    // if a _cart item consist any item then then isInCart true or else remain false...
 
     bool isInCart = _cart.items.contains(catalog);
 
@@ -30,6 +33,8 @@ class AddToCart extends StatelessWidget {
             AddMutation(catalog);
 
             // setState(() {});
+          } else if (isInCart) {
+            RemoveMutation(catalog);
           }
         },
         child:

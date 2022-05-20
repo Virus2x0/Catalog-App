@@ -50,6 +50,7 @@ class CatalogItem extends StatelessWidget {
         child: Row(
       children: [
         Hero(
+            // !  here catalog is used as parametrer and it is a index of a product
             tag: Key(catalog.id.toString()),
             child: CatalogImage(image: catalog.image)),
         Expanded(
