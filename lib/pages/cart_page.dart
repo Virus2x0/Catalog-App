@@ -27,9 +27,14 @@ class CartPage extends StatelessWidget {
 }
 
 //! bottom cart total with add to cart button !
-class _cartTotal extends StatelessWidget {
+class _cartTotal extends StatefulWidget {
   const _cartTotal({Key? key}) : super(key: key);
 
+  @override
+  State<_cartTotal> createState() => _cartTotalState();
+}
+
+class _cartTotalState extends State<_cartTotal> {
   @override
   Widget build(BuildContext context) {
     //important thing for useing VxBuilder
@@ -85,6 +90,7 @@ class _cartTotal extends StatelessWidget {
         artDialogArgs: ArtDialogArgs(
             title: "Order Placed",
             type: ArtSweetAlertType.success,
+            // barrierColor: color.theme.canvasColor,
             confirmButtonColor: Colors.blue));
   }
 }
