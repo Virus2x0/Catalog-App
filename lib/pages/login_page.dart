@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
 import 'package:flutter_for_trial/pages/home_page_2.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -24,6 +25,11 @@ class _LoginPageState extends State<LoginPage> {
       await Future.delayed(Duration(seconds: 1));
       await Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomePage2()));
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      } else {
+        SystemNavigator.pop();
+      }
       setState(() {
         buttonChange = false;
       });
@@ -46,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20.0,
               ),
               //Welcome Text
-              "Welcome $name".text.size(30).make(),
+              "Welcome, $name".text.size(30).make(),
               SizedBox(
                 height: 20.0,
               ),

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
-
+import "package:art_sweetalert/art_sweetalert.dart";
 import '../core/store.dart';
 import '../models/cart.dart';
 
@@ -40,8 +41,7 @@ class _cartTotal extends StatelessWidget {
           //price
           VxBuilder(
             mutations: {RemoveMutation},
-            builder: (comtext, store, status) {
-              // print(_cart.totalPrice);
+            builder: (context, store, status) {
               return "\$${_cart.totalPrice}"
                   .text
                   .xl5
@@ -55,8 +55,10 @@ class _cartTotal extends StatelessWidget {
                     if (_cart.totalPrice != 0) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: "Thanks for shopping!".text.make()));
-                      //  RemoveMutation(_cart.items[]s);
-                      orderDoneAlertDialog();
+
+                      //* dialogBox of order placed
+                      orderDoneAlertDialog(context);
+                      _cart.allItemR;
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: "opss! You forgot to add something!"
@@ -69,7 +71,22 @@ class _cartTotal extends StatelessWidget {
         ]));
   }
 
-  void orderDoneAlertDialog() {}
+  void orderDoneAlertDialog(BuildContext context) {
+    //get exits from cart page
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context);
+    } else {
+      SystemNavigator.pop();
+    }
+
+    //? dialog box get show!
+    ArtSweetAlert.show(
+        context: context,
+        artDialogArgs: ArtDialogArgs(
+            title: "Order Placed",
+            type: ArtSweetAlertType.success,
+            confirmButtonColor: Colors.blue));
+  }
 }
 
 class _CartList extends StatelessWidget {

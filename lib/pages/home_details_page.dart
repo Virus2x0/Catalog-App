@@ -57,10 +57,17 @@ class HomeDetailsPage extends StatelessWidget {
                       .py(38), //padding only on Y axis 38
                   catalog.desc.text.xl.make(),
                   10.heightBox, //for blank space..
-                  "Eos lorem magna lorem voluptua vero sanctus et dolores sit, et sea at consetetur sit sadipscing. Sed et magna magna stet aliquyam est invidunt nonumy. Dolor nonumy elitr et erat sea erat sed. Lorem gubergren ea nonumy sed. Ea ut nonumy sadipscing ipsum ut. Takimata sit duo eirmod dolore consetetur, ipsum ut et rebum amet, duo labore accusam amet rebum lorem erat. Accusam consetetur est et labore lorem et sit labore stet, lorem dolores sed dolore ut aliquyam lorem diam.."
-                      .text
-                      .make()
-                      .p16()
+
+                  // scrollable Desc now
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child:
+                          "Eos lorem magna lorem voluptua vero sanctus et dolores sit, et sea at consetetur sit sadipscing. Sed et magna magna stet aliquyam est invidunt nonumy. Dolor nonumy elitr et erat sea erat sed. Lorem gubergren ea nonumy sed. Ea ut nonumy sadipscing ipsum ut. Takimata sit duo eirmod dolore consetetur, ipsum ut et rebum amet, duo labore accusam amet rebum lorem erat. Accusam consetetur est et labore lorem et sit labore stet, lorem dolores sed dolore ut aliquyam lorem diam.."
+                              .text
+                              .make()
+                              .p16(),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -70,3 +77,28 @@ class HomeDetailsPage extends StatelessWidget {
     );
   }
 }
+// import 'package:art_sweetalert/art_sweetalert.dart';
+//  onTap: () {
+//                   ArtSweetAlert.show(
+//                       context: context,
+//                       artDialogArgs: ArtDialogArgs(
+//                           title: "A question?",
+//                           type: ArtSweetAlertType.question,
+//                           text: "Show a question message with an icon"));
+// showDialog(
+//   context: context,
+//   builder: (BuildContext context) => AlertDialog(
+//     title: const Text('AlertDialog Title'),
+//     content: const Text('AlertDialog description'),
+//     actions: <Widget>[
+//       TextButton(
+//         onPressed: () => Navigator.pop(context, 'Cancel'),
+//         child: const Text('Cancel'),
+//       ),
+//       TextButton(
+//         onPressed: () => Navigator.pop(context, 'OK'),
+//         child: const Text('OK'),
+//       ),
+//     ],
+//   ),
+// );
