@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_for_trial/pages/home_page_2.dart';
 import 'package:velocity_x/velocity_x.dart';
 import "package:art_sweetalert/art_sweetalert.dart";
 import '../core/store.dart';
@@ -62,8 +63,12 @@ class _cartTotalState extends State<_cartTotal> {
                           content: "Thanks for shopping!".text.make()));
 
                       //* dialogBox of order placed
-                      orderDoneAlertDialog(context);
+
                       _cart.allItemR;
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage2()));
+
+                      // orderDoneAlertDialog(context);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: "opss! You forgot to add something!"
