@@ -65,10 +65,11 @@ class _cartTotalState extends State<_cartTotal> {
                       //* dialogBox of order placed
 
                       _cart.allItemR;
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage2()));
 
-                      // orderDoneAlertDialog(context);
+                      // Navigator.popAndPushNamed(context, '/');
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/', (Route<dynamic> route) => false);
+                      orderDoneAlertDialog(context);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: "opss! You forgot to add something!"
@@ -83,11 +84,11 @@ class _cartTotalState extends State<_cartTotal> {
 
   void orderDoneAlertDialog(BuildContext context) {
     //get exits from cart page
-    if (Navigator.canPop(context)) {
-      Navigator.pop(context);
-    } else {
-      SystemNavigator.pop();
-    }
+    // if (Navigator.canPop(context)) {
+    //   Navigator.pop(context);
+    // } else {
+    //   SystemNavigator.pop();
+    // }
 
     //? dialog box get show!
     ArtSweetAlert.show(

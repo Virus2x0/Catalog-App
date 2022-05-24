@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_for_trial/core/store.dart';
+import 'package:flutter_for_trial/pages/cart_page.dart';
+import 'package:flutter_for_trial/pages/home_details_page.dart';
 import 'package:flutter_for_trial/pages/home_page_2.dart';
 import 'package:flutter_for_trial/widgets/theme.dart';
 import 'package:flutter_for_trial/pages/login_page.dart';
@@ -21,13 +23,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Trial App",
-      // home: LoginPage(),
-      home: HomePage2(),
-      themeMode: ThemeMode.system,
-      theme: MyTheme.LightTheme(context),
-      darkTheme: MyTheme.DarkTheme(context),
-    );
+        debugShowCheckedModeBanner: false,
+        title: "Trial App",
+        // home: LoginPage(),
+        // home: HomePage2(),
+        themeMode: ThemeMode.system,
+        theme: MyTheme.LightTheme(context),
+        darkTheme: MyTheme.DarkTheme(context),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomePage2(),
+          '/cartPage': (context) => const CartPage(),
+          // '/homeDetails': (context) => const HomeDetailsPage(),
+        });
   }
 }

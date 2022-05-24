@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 // import 'package:url_launcher/url_launcher.'dart;
 import '../pages/home_page_2.dart';
 import '../pages/profile_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerMenu extends StatefulWidget {
   DrawerMenu({Key? key}) : super(key: key);
@@ -41,12 +42,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
                       textScaleFactor: 1.5,
                       style: TextStyle(color: Colors.white)),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage2(),
-                      ),
-                    );
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/', (Route<dynamic> route) => false);
                   }),
             ),
             Material(
@@ -73,6 +70,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 title: Text("Email Me",
                     textScaleFactor: 1.5,
                     style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  launch(
+                      "mailto:vivekadam1332@gmail.com?subject=New Contact&body=How are you?");
+                },
               ),
             )
           ],
