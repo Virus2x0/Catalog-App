@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import 'package:flutter_for_trial/pages/home_page_2.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,6 +14,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String name = "";
   bool buttonChange = false;
+
+  void saveText(String text) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("text", text);
+  }
 
   final _formkey = GlobalKey<FormState>();
 
