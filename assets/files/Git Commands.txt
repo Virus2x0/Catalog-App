@@ -1,0 +1,17 @@
+Fork -  to get a copy of a repo!
+
+git clone  url to get the data to local computers 
+
+then normal all commands and
+
+to ennter in settings branch .... git checkout settings
+
+main + settings version we need to merge it by....git merge main(merge to main branch)
+(but stil stays on setting branch)...
+
+git checkout -b branch name ...create branches
+
+3 phases of file 
+U -  untracked new
+M  - tracked but with changes 
+C - commited ...may be with out any kind of 

@@ -1,21 +1,40 @@
+import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
-import 'package:flutter_for_trial/btn_click.dart';
+import 'package:flutter_for_trial/core/store.dart';
+import 'package:flutter_for_trial/pages/cart_page.dart';
+import 'package:flutter_for_trial/pages/home_details_page.dart';
+import 'package:flutter_for_trial/pages/home_page_2.dart';
+import 'package:flutter_for_trial/widgets/theme.dart';
+import 'package:flutter_for_trial/pages/login_page.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-import 'package:flutter_for_trial/drawer.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'firebase_options.dart';
 
-import 'package:flutter_for_trial/login_page.dart';
+void main() async {
+  runApp(VxState(store: MyStore(), child: MyApp()));
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+}
 
-void main() {
-  runApp(MaterialApp(
-    //debugShowCheckedModeBanner: false,
-    title: "Trial App",
-    //home: BottomMenu(),
-    home: LoginPage(),
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
-      fontFamily: GoogleFonts.lato().fontFamily,
-      primaryTextTheme: GoogleFonts.latoTextTheme(),
-    ),
-  ));
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Trial App",
+        // home: LoginPage(),
+        // home: HomePage2(),
+        themeMode: ThemeMode.system,
+        theme: MyTheme.LightTheme(context),
+        darkTheme: MyTheme.DarkTheme(context),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomePage2(),
+          '/cartPage': (context) => const CartPage(),
+          // '/homeDetails': (context) => const HomeDetailsPage(),
+        });
+  }
 }

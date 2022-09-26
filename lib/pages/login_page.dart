@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
-import 'package:flutter_for_trial/btn_click.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_for_trial/pages/home_page_2.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,6 +15,11 @@ class _LoginPageState extends State<LoginPage> {
   String name = "";
   bool buttonChange = false;
 
+  void saveText(String text) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("text", text);
+  }
+
   final _formkey = GlobalKey<FormState>();
 
   Future moveToDashboard(BuildContext context) async {
@@ -22,7 +30,12 @@ class _LoginPageState extends State<LoginPage> {
 
       await Future.delayed(Duration(seconds: 1));
       await Navigator.push(
-          context, MaterialPageRoute(builder: (context) => BottomMenu()));
+          context, MaterialPageRoute(builder: (context) => HomePage2()));
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      } else {
+        SystemNavigator.pop();
+      }
       setState(() {
         buttonChange = false;
       });
@@ -32,32 +45,27 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: context.theme.canvasColor,
       child: SingleChildScrollView(
+        //singlechildScollView gives scrollablity to the small devices~
         child: Form(
           key: _formkey,
           child: Column(
             children: [
-              Image.asset("assets/images/file.png", fit: BoxFit.cover),
-
-              // ignore: prefer_const_constructors
-
+              Image.asset("assets/images/LogIn_hey.png", fit: BoxFit.cover),
+              // used sizebox for spacing between two widgets
               SizedBox(
                 height: 20.0,
               ),
-              Text(
-                "Welcome, $name ",
-                // ignore: prefer_const_constructors
-                style: TextStyle(
-                  fontSize: 30.0,
-                ),
-              ),
+              //Welcome Text
+              "Welcome, $name".text.size(30).make(),
               SizedBox(
                 height: 20.0,
               ),
+              // TextFormField from here...
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 16.0, horizontal: 32.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
                 child: Column(
                   children: [
                     TextFormField(
@@ -91,27 +99,27 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 20.0,
                     ),
-                    InkWell(
-                      onTap: () => moveToDashboard(context),
-                      child: AnimatedContainer(
-                        duration: Duration(seconds: 1),
-                        width: buttonChange ? 50 : 150.0,
-                        height: 50.0,
-                        alignment: Alignment.center,
-                        child: buttonChange
-                            ? Icon(Icons.done, color: Colors.white)
-                            : Text(
-                                "Login",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.5,
+                    Material(
+                      color: Colors.blue,
+                      borderRadius:
+                          BorderRadius.circular(buttonChange ? 50 : 8),
+                      child: InkWell(
+                        onTap: () => moveToDashboard(context),
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 1),
+                          width: buttonChange ? 50 : 150.0,
+                          height: 50.0,
+                          alignment: Alignment.center,
+                          child: buttonChange
+                              ? Icon(Icons.done, color: Colors.white)
+                              : Text(
+                                  "Login",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.5,
+                                  ),
                                 ),
-                              ),
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius:
-                              BorderRadius.circular(buttonChange ? 50 : 8),
                         ),
                       ),
                     )
